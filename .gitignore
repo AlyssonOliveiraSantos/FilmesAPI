@@ -1,0 +1,21 @@
+# Pastas de build
+bin/
+obj/
+
+# Configurações do usuário e IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+*.db
+
+# Dependências e pacotes
+*.dll
+*.pdb
+*.cache
+*.log
+.env
+
+# Arquivos do Visual Studio
+*.vs/
+*.vscode/
