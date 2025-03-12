@@ -33,7 +33,7 @@ namespace FilmesApi.Controllers
             Filme filme = _mapper.Map<Filme>(filmeDto);
             _context.Filmes.Add(filme);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(RecuperarFilmePorId), new { id = filme.id }, filme);
+            return CreatedAtAction(nameof(RecuperarFilmePorId), new { id = filme.Id }, filme);
         }
 
         [HttpGet]
@@ -45,7 +45,7 @@ namespace FilmesApi.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperarFilmePorId(int id)
         {
-            var filme = _context.Filmes.FirstOrDefault(filmes => filmes.id == id);
+            var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null) return NotFound();
             var filmeDto = _mapper.Map<ReadFilmeDto>(filme);
             return Ok(filmeDto);
@@ -54,7 +54,7 @@ namespace FilmesApi.Controllers
         [HttpPut("{id}")]
         public IActionResult AtualizaFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
         {
-            var filme = _context.Filmes.FirstOrDefault(filme => filme.id == id);
+            var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null) return NotFound();
             _mapper.Map(filmeDto, filme);
             _context.SaveChanges();
@@ -64,7 +64,7 @@ namespace FilmesApi.Controllers
         [HttpPatch("{id}")]
         public IActionResult AtualizaParcialFilme(int id, [FromBody] JsonPatchDocument<UpdateFilmeDto> patchFilme)
         {
-            var filme = _context.Filmes.FirstOrDefault(filme => filme.id == id);
+            var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null) return NotFound();
             var filmeDto = _mapper.Map<UpdateFilmeDto>(filme);
             patchFilme.ApplyTo(filmeDto, ModelState);
@@ -77,7 +77,7 @@ namespace FilmesApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletaFilme(int id)
         {
-            var filme = _context.Filmes.FirstOrDefault(filme => filme.id == id);
+            var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null) return NotFound();
             _context.Remove(filme);
             _context.SaveChanges();

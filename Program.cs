@@ -14,7 +14,7 @@ namespace FilmesApi
             var connectionString = builder.Configuration.GetConnectionString("DataBase");
 
             builder.Services.AddDbContext<FilmeContext>
-                (options => options.UseSqlServer(connectionString));
+                (options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Add services to the container.
