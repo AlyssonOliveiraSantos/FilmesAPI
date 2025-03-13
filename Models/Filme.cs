@@ -16,5 +16,7 @@ namespace FilmesApi.Models
         [Range(1, 300, ErrorMessage = "A duração deve está entre 1 e 300")]
         public int Duracao { get; set; }
 
+        public virtual ICollection<Sessao> Sessoes {get; set;}
+
     }
 }
